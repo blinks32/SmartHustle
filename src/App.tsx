@@ -15,7 +15,7 @@ import { useAuth } from './hooks/useAuth'
 const queryClient = new QueryClient()
 
 function AppContent() {
-  const { user, loading } = useAuth()
+  const { user, loading, error, isConfigured } = useAuth()
 
   if (loading) {
     return (
@@ -25,6 +25,31 @@ function AppContent() {
     )
   }
 
+  // Show configuration error if Supabase is not set up
+  if (!isConfigured || error) {
+    return (
+      <div className="min-h-screen bg-gray-900 text-white flex items-center justify-center p-4">
+        <div className="max-w-md text-center">
+          <div className="w-16 h-16 bg-red-600 rounded-full flex items-center justify-center mx-auto mb-4">
+            <span className="text-2xl">⚠️</span>
+          </div>
+          <h1 className="text-xl font-bold mb-4">Configuration Required</h1>
+          <p className="text-gray-400 mb-6">
+            {error || 'Supabase is not configured. Please set up your environment variables.'}
+          </p>
+          <div className="bg-gray-800 border border-gray-700 rounded-lg p-4 text-left text-sm">
+            <p className="font-medium mb-2">To get started:</p>
+            <ol className="list-decimal list-inside space-y-1 text-gray-300">
+              <li>Click "Connect to Supabase" in the top right</li>
+              <li>Create a new Supabase project</li>
+              <li>Copy your project URL and anon key</li>
+              <li>Set up your environment variables</li>
+            </ol>
+          </div>
+        </div>
+      </div>
+    )
+  }
   if (!user) {
     return <Auth />
   }
