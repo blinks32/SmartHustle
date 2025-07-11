@@ -79,7 +79,7 @@ export function Auth() {
   }
 
   return (
-    <div className="min-h-screen bg-gray-900 flex items-center justify-center p-4">
+    <div className="min-h-screen bg-gray-900 flex flex-col items-center justify-center p-4">
       <div className="w-full max-w-md">
         {/* Logo */}
         <div className="text-center mb-8">
@@ -92,19 +92,19 @@ export function Auth() {
 
         {/* Auth Form */}
         <div className="card">
-          <div className="flex mb-6">
+          <div className="flex mb-6 bg-gray-700 rounded-lg p-1">
             <button
               onClick={() => setIsSignUp(false)}
-              className={`flex-1 py-2 text-center rounded-lg transition-colors ${
-                !isSignUp ? 'bg-primary-600 text-white' : 'text-gray-400 hover:text-white'
+              className={`flex-1 py-2 px-4 text-center rounded-md transition-colors font-medium ${
+                !isSignUp ? 'bg-primary-600 text-white shadow-sm' : 'text-gray-300 hover:text-white'
               }`}
             >
               Sign In
             </button>
             <button
               onClick={() => setIsSignUp(true)}
-              className={`flex-1 py-2 text-center rounded-lg transition-colors ${
-                isSignUp ? 'bg-primary-600 text-white' : 'text-gray-400 hover:text-white'
+              className={`flex-1 py-2 px-4 text-center rounded-md transition-colors font-medium ${
+                isSignUp ? 'bg-primary-600 text-white shadow-sm' : 'text-gray-300 hover:text-white'
               }`}
             >
               Sign Up
@@ -120,7 +120,7 @@ export function Auth() {
           {isSignUp ? (
             <form onSubmit={signUpForm.handleSubmit(handleSignUp)} className="space-y-4">
               <div>
-                <label className="block text-sm font-medium mb-2">Email</label>
+                <label className="block text-sm font-medium mb-2 text-gray-200">Email</label>
                 <input
                   {...signUpForm.register('email')}
                   type="email"
@@ -135,7 +135,7 @@ export function Auth() {
               </div>
 
               <div>
-                <label className="block text-sm font-medium mb-2">Password</label>
+                <label className="block text-sm font-medium mb-2 text-gray-200">Password</label>
                 <input
                   {...signUpForm.register('password')}
                   type="password"
@@ -150,7 +150,7 @@ export function Auth() {
               </div>
 
               <div>
-                <label className="block text-sm font-medium mb-2">Business Name</label>
+                <label className="block text-sm font-medium mb-2 text-gray-200">Business Name</label>
                 <input
                   {...signUpForm.register('businessName')}
                   type="text"
@@ -165,10 +165,10 @@ export function Auth() {
               </div>
 
               <div>
-                <label className="block text-sm font-medium mb-2">Business Type</label>
+                <label className="block text-sm font-medium mb-2 text-gray-200">Business Type</label>
                 <select
                   {...signUpForm.register('businessType')}
-                  className="input w-full"
+                  className="input w-full bg-gray-800"
                 >
                   <option value="">Select your business type</option>
                   {businessTypes.map((type) => (
@@ -183,7 +183,7 @@ export function Auth() {
               </div>
 
               <div>
-                <label className="block text-sm font-medium mb-2">Phone (Optional)</label>
+                <label className="block text-sm font-medium mb-2 text-gray-200">Phone (Optional)</label>
                 <input
                   {...signUpForm.register('phone')}
                   type="tel"
@@ -195,7 +195,7 @@ export function Auth() {
               <button
                 type="submit"
                 disabled={loading}
-                className="btn-primary w-full flex items-center justify-center"
+                className="btn-primary w-full flex items-center justify-center h-12 mt-6"
               >
                 {loading ? (
                   <Loader2 className="animate-spin" size={20} />
@@ -207,7 +207,7 @@ export function Auth() {
           ) : (
             <form onSubmit={signInForm.handleSubmit(handleSignIn)} className="space-y-4">
               <div>
-                <label className="block text-sm font-medium mb-2">Email</label>
+                <label className="block text-sm font-medium mb-2 text-gray-200">Email</label>
                 <input
                   {...signInForm.register('email')}
                   type="email"
@@ -222,7 +222,7 @@ export function Auth() {
               </div>
 
               <div>
-                <label className="block text-sm font-medium mb-2">Password</label>
+                <label className="block text-sm font-medium mb-2 text-gray-200">Password</label>
                 <input
                   {...signInForm.register('password')}
                   type="password"
@@ -239,7 +239,7 @@ export function Auth() {
               <button
                 type="submit"
                 disabled={loading}
-                className="btn-primary w-full flex items-center justify-center"
+                className="btn-primary w-full flex items-center justify-center h-12 mt-6"
               >
                 {loading ? (
                   <Loader2 className="animate-spin" size={20} />
