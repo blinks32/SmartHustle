@@ -79,7 +79,7 @@ export function Auth() {
   }
 
   return (
-    <div className="min-h-screen bg-gray-900 flex flex-col items-center justify-center p-4">
+    <div className="min-h-screen bg-gray-900 text-white flex flex-col items-center justify-center p-4">
       <div className="w-full max-w-md">
         {/* Logo */}
         <div className="text-center mb-8">
@@ -91,40 +91,47 @@ export function Auth() {
         </div>
 
         {/* Auth Form */}
-        <div className="card">
+        <div className="bg-gray-800 border border-gray-700 rounded-xl p-6 shadow-lg">
+          {/* Tab Switcher */}
           <div className="flex mb-6 bg-gray-700 rounded-lg p-1">
             <button
               onClick={() => setIsSignUp(false)}
-              className={`flex-1 py-2 px-4 text-center rounded-md transition-colors font-medium ${
-                !isSignUp ? 'bg-primary-600 text-white shadow-sm' : 'text-gray-300 hover:text-white'
+              className={`flex-1 py-2 px-4 text-center rounded-md transition-colors font-medium text-sm ${
+                !isSignUp 
+                  ? 'bg-primary-600 text-white shadow-sm' 
+                  : 'text-gray-300 hover:text-white'
               }`}
             >
               Sign In
             </button>
             <button
               onClick={() => setIsSignUp(true)}
-              className={`flex-1 py-2 px-4 text-center rounded-md transition-colors font-medium ${
-                isSignUp ? 'bg-primary-600 text-white shadow-sm' : 'text-gray-300 hover:text-white'
+              className={`flex-1 py-2 px-4 text-center rounded-md transition-colors font-medium text-sm ${
+                isSignUp 
+                  ? 'bg-primary-600 text-white shadow-sm' 
+                  : 'text-gray-300 hover:text-white'
               }`}
             >
               Sign Up
             </button>
           </div>
 
+          {/* Error Message */}
           {error && (
-            <div className="bg-red-900/20 border border-red-700 text-red-400 px-4 py-3 rounded-lg mb-4">
+            <div className="bg-red-900/20 border border-red-700 text-red-400 px-4 py-3 rounded-lg mb-4 text-sm">
               {error}
             </div>
           )}
 
+          {/* Sign Up Form */}
           {isSignUp ? (
             <form onSubmit={signUpForm.handleSubmit(handleSignUp)} className="space-y-4">
               <div>
-                <label className="block text-sm font-medium mb-2 text-gray-200">Email</label>
+                <label className="block text-sm font-medium mb-2 text-white">Email</label>
                 <input
                   {...signUpForm.register('email')}
                   type="email"
-                  className="input w-full"
+                  className="w-full bg-gray-800 border border-gray-600 rounded-lg px-3 py-2 text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-transparent"
                   placeholder="your@email.com"
                 />
                 {signUpForm.formState.errors.email && (
@@ -135,11 +142,11 @@ export function Auth() {
               </div>
 
               <div>
-                <label className="block text-sm font-medium mb-2 text-gray-200">Password</label>
+                <label className="block text-sm font-medium mb-2 text-white">Password</label>
                 <input
                   {...signUpForm.register('password')}
                   type="password"
-                  className="input w-full"
+                  className="w-full bg-gray-800 border border-gray-600 rounded-lg px-3 py-2 text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-transparent"
                   placeholder="••••••••"
                 />
                 {signUpForm.formState.errors.password && (
@@ -150,11 +157,11 @@ export function Auth() {
               </div>
 
               <div>
-                <label className="block text-sm font-medium mb-2 text-gray-200">Business Name</label>
+                <label className="block text-sm font-medium mb-2 text-white">Business Name</label>
                 <input
                   {...signUpForm.register('businessName')}
                   type="text"
-                  className="input w-full"
+                  className="w-full bg-gray-800 border border-gray-600 rounded-lg px-3 py-2 text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-transparent"
                   placeholder="Your Business Name"
                 />
                 {signUpForm.formState.errors.businessName && (
@@ -165,14 +172,14 @@ export function Auth() {
               </div>
 
               <div>
-                <label className="block text-sm font-medium mb-2 text-gray-200">Business Type</label>
+                <label className="block text-sm font-medium mb-2 text-white">Business Type</label>
                 <select
                   {...signUpForm.register('businessType')}
-                  className="input w-full bg-gray-800"
+                  className="w-full bg-gray-800 border border-gray-600 rounded-lg px-3 py-2 text-white focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-transparent"
                 >
-                  <option value="">Select your business type</option>
+                  <option value="" className="bg-gray-800 text-gray-400">Select your business type</option>
                   {businessTypes.map((type) => (
-                    <option key={type} value={type}>{type}</option>
+                    <option key={type} value={type} className="bg-gray-800 text-white">{type}</option>
                   ))}
                 </select>
                 {signUpForm.formState.errors.businessType && (
@@ -183,11 +190,11 @@ export function Auth() {
               </div>
 
               <div>
-                <label className="block text-sm font-medium mb-2 text-gray-200">Phone (Optional)</label>
+                <label className="block text-sm font-medium mb-2 text-white">Phone (Optional)</label>
                 <input
                   {...signUpForm.register('phone')}
                   type="tel"
-                  className="input w-full"
+                  className="w-full bg-gray-800 border border-gray-600 rounded-lg px-3 py-2 text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-transparent"
                   placeholder="+234 xxx xxx xxxx"
                 />
               </div>
@@ -195,7 +202,7 @@ export function Auth() {
               <button
                 type="submit"
                 disabled={loading}
-                className="btn-primary w-full flex items-center justify-center h-12 mt-6"
+                className="w-full bg-primary-600 hover:bg-primary-700 disabled:opacity-50 disabled:cursor-not-allowed text-white px-4 py-3 rounded-lg font-medium transition-colors flex items-center justify-center mt-6"
               >
                 {loading ? (
                   <Loader2 className="animate-spin" size={20} />
@@ -205,13 +212,14 @@ export function Auth() {
               </button>
             </form>
           ) : (
+            /* Sign In Form */
             <form onSubmit={signInForm.handleSubmit(handleSignIn)} className="space-y-4">
               <div>
-                <label className="block text-sm font-medium mb-2 text-gray-200">Email</label>
+                <label className="block text-sm font-medium mb-2 text-white">Email</label>
                 <input
                   {...signInForm.register('email')}
                   type="email"
-                  className="input w-full"
+                  className="w-full bg-gray-800 border border-gray-600 rounded-lg px-3 py-2 text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-transparent"
                   placeholder="your@email.com"
                 />
                 {signInForm.formState.errors.email && (
@@ -222,11 +230,11 @@ export function Auth() {
               </div>
 
               <div>
-                <label className="block text-sm font-medium mb-2 text-gray-200">Password</label>
+                <label className="block text-sm font-medium mb-2 text-white">Password</label>
                 <input
                   {...signInForm.register('password')}
                   type="password"
-                  className="input w-full"
+                  className="w-full bg-gray-800 border border-gray-600 rounded-lg px-3 py-2 text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-transparent"
                   placeholder="••••••••"
                 />
                 {signInForm.formState.errors.password && (
@@ -239,7 +247,7 @@ export function Auth() {
               <button
                 type="submit"
                 disabled={loading}
-                className="btn-primary w-full flex items-center justify-center h-12 mt-6"
+                className="w-full bg-primary-600 hover:bg-primary-700 disabled:opacity-50 disabled:cursor-not-allowed text-white px-4 py-3 rounded-lg font-medium transition-colors flex items-center justify-center mt-6"
               >
                 {loading ? (
                   <Loader2 className="animate-spin" size={20} />
